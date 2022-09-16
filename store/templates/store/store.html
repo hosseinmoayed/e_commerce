@@ -1,0 +1,33 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load poll_extras %}
+
+{% block content %}
+    <div class="row">
+        {% for product in products %}
+
+            <div class="col-lg-4">
+                {% thumbnail product.image|img '575x360' padding=True as im %}
+                    <img class="thumbnail" src="{{ im.url }}" id="edit-me2">
+                {% endthumbnail %}
+
+                <div class="box-element product" id="edit-me">
+                    <h6><strong>{{ product.name }}</strong></h6>
+                    <hr>
+
+                    <button  class="btn btn-outline-secondary add-btn update-cart" onclick="Add_or_remove_from_cart({action:'add', user:'{{ request.user }}' ,product_id:{{product.id}}})">Add to Cart</button>
+                    <a class="btn btn-outline-success" href="#">View</a>
+                    <h4 style="display: inline-block; float: right"><strong>${{ product.price|floatformat:2 }}</strong></h4>
+
+                </div>
+            </div>
+        {% endfor %}
+
+
+
+    </div>
+    <br>
+{% endblock %}
+
+

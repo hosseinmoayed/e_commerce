@@ -1,0 +1,35 @@
+{% load static %}
+{% load thumbnail %}
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'store' %}">Ecom</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'store' %}">Store<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+        <div class="form-inline my-2 my-lg-0">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout-page' %}"class="btn btn-warning" id="btn-edit">Logout</a>
+            {% else %}
+                <a href="{% url 'login-page' %}"class="btn btn-warning" id="btn-edit">Login</a>
+                <a href="{% url 'create-account-page' %}"class="btn btn-primary" id="btn-edit">Create Account</a>
+            {% endif %}
+
+
+            <a href="{% url 'cart' %}">
+                <img  id="cart-icon" src="{% static 'images/cart.png' %}">
+            </a>
+            <p id="cart-total">
+                {{ order_items }}
+            </p>
+
+        </div>
+      </div>
+</nav>

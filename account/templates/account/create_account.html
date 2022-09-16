@@ -1,0 +1,164 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block refrense %}
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,900' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div class="registration-form">
+  <header>
+    <h1>Sign Up</h1>
+    <p id="head-id">Please enter a valid email</p>
+    <h2 id="step">1/4</h2>
+
+  </header>
+  <form>
+    <div class="input-section email-section">
+      <input class="email" type="email" placeholder="ENTER YOUR E-MAIL HERE" autocomplete="off"/>
+      <div class="animated-button"><span class="icon-paper-plane"><i class="fa fa-envelope-o"></i></span><span id="click-s" class="next-button email hidden"><i class="fa fa-arrow-up"></i></span></div>
+    </div>
+    <div class="input-section username-section folded">
+      <input class="username" type="text" placeholder="ENTER YOUR USERNAME HERE"/>
+      <div class="animated-button"><span class="icon-lock"><i class="fa fa-lock"></i></span><span class="next-button username hidden"><i class="fa fa-arrow-up"></i></span></div>
+    </div>
+    <div class="input-section password-section folded">
+      <input class="password" type="password" placeholder="ENTER YOUR PASSWORD HERE"/>
+      <div class="animated-button"><span class="icon-password-lock"><i class="fa fa-lock"></i></span><span class="next-button password hidden"><i class="fa fa-arrow-up"></i></span></div>
+    </div>
+    <div class="input-section repeat-password-section folded">
+      <input class="repeat-password" type="password" placeholder="REPEAT YOUR PASSWORD HERE"/>
+       <div class="animated-button"><span class="icon-repeat-lock"><i class="fa fa-lock"></i></span><span class="next-button repeat-password hidden"><i class="fa fa-paper-plane"></i></span></div>
+    </div>
+
+    <div class="success">
+      <p>ACCOUNT CREATED</p>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
+
+
+{% block jsrefrense %}
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+      <script id="rendered-js" >
+$('.email').on("change keyup paste",
+function () {
+  if ($(this).val()) {
+    $('.icon-paper-plane').addClass("next");
+    $('.next-button.email ').removeClass('hidden')
+  } else {
+    $('.icon-paper-plane').removeClass("next");
+    $('.next-button.email ').addClass('hidden')
+  }
+});
+
+
+$('.next-button').hover(
+function () {
+  $(this).css('cursor', 'pointer');
+});
+
+
+$('.next-button.email').click(
+function () {
+  CheckEmailFormat()
+
+});
+{##-----------------------------------#}
+
+
+$('.username').on("change keyup paste",
+function () {
+  if ($(this).val()) {
+    $('.icon-lock').addClass("next");
+    $('.next-button.username ').removeClass('hidden');
+  } else {
+    $('.icon-lock').removeClass("next");
+    $('.next-button.username ').addClass('hidden')
+  }
+});
+
+
+$('.next-button').hover(
+function () {
+  $(this).css('cursor', 'pointer');
+});
+
+
+$('.next-button.username').click(
+function () {
+  CheckUserName()
+
+});
+
+
+{#---------------------------------------#}
+$('.password').on("change keyup paste",
+function () {
+  if ($(this).val()) {
+    $('.icon-password-lock').addClass("next");
+    $('.next-button.password ').removeClass('hidden')
+  } else {
+    $('.icon-lock').removeClass("next");
+    $('.next-button.password ').addClass('hidden')
+  }
+});
+
+
+$('.next-button').hover(
+function () {
+  $(this).css('cursor', 'pointer');
+});
+
+
+$('.next-button.password').click(
+function () {
+  $('#head-id').html('Please repeat the password carefully')
+  $('#step').html('4/4')
+  $('.password-section').addClass("fold-up");
+  $('.repeat-password-section').removeClass("folded");
+});
+
+
+$('.repeat-password').on("change keyup paste",
+function () {
+  if ($(this).val()) {
+    $('.icon-repeat-lock').addClass("next");
+    $('.next-button.repeat-password').removeClass('hidden')
+  } else {
+    $('.icon-repeat-lock').removeClass("next");
+    $('.next-button.repeat-password ').addClass('hidden')
+  }
+});
+
+
+
+
+
+$('.next-button.repeat-password').click(
+function () {
+
+    CheckPassword()
+})
+
+
+
+
+    </script>
+{% endblock %}

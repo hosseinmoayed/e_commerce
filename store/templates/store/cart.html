@@ -1,0 +1,9 @@
+{% extends 'shared/base.html' %}
+{% load thumbnail %}
+{% load poll_extras %}
+{% load static %}
+{% block content %}
+    <div id="order_item_in_cart">
+        {% include 'store/order_item.html' %}
+    </div>
+{% endblock %}
